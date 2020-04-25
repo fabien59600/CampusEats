@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Livraison</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding class="form-content" *ngIf="isValided===false">
+  <ion-row></ion-row>
+  <ion-col>
+  <ion-title class="ion-text-center">Où désirez-vous être livré ?</ion-title>
+  </ion-col>
+  <ion-row></ion-row>
+  <form [formGroup]="command_form" (ngSubmit)="onSubmit()">
+      <ion-grid>  
+        <ion-row>
+          <ion-col size="3">
+            <ion-item>
+                <ion-label position="floating" color="medium">N°</ion-label>
+                <ion-input type="number" formControlName="number"></ion-input>
+            </ion-item>
+            <!--<div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.number">
+                    <div class="error-message"
+                         *ngIf="command_form.get('number').hasError(validation.type) && command_form.get('number').dirty || command_form.get('number').touched)">
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>-->
+          </ion-col>
+          <ion-col size="9">
+            <ion-item>
+                <ion-label position="floating" color="medium">Rue</ion-label>
+                <ion-input type="text" formControlName="street"></ion-input>
+            </ion-item>
+            <!--<div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.street">
+                    <div class="error-message"
+                         *ngIf="command_form.get('street').hasError(validation.type) && command_form.get('street').dirty || command_form.get('street').touched)">
+                        <ion-icon name="information-circle-outline"></ion-icon>
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>-->
+          </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="10">
+          <ion-item>
+              <ion-label position="floating" color="medium">Ville</ion-label>
+              <ion-input type="text" formControlName="city"></ion-input>
+          </ion-item>
+          <!--<div class="validation-errors">
+              <ng-container *ngFor="let validation of validation_messages.street">
+                  <div class="error-message"
+                       *ngIf="command_form.get('street').hasError(validation.type) && command_form.get('street').dirty || command_form.get('street').touched)">
+                      <ion-icon name="information-circle-outline"></ion-icon>
+                      {{ validation.message }}
+                  </div>
+              </ng-container>
+          </div>-->
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <ion-row>
+      <ion-col></ion-col>
+        <ion-button color="medium" tab="cart" type="submit">Commander</ion-button>
+      <ion-col></ion-col>
+    </ion-row>
+  </form>
+</ion-content>        
+
+<ion-content padding *ngIf="isValided===true">
+  <ion-grid style="height: 100%" >
+    <ion-row style="height: 100%">
+      <ion-img type="image/png" href="/tabs/" style="height: 150px; width: 150px; margin: auto; display: block;" src="assets/img/check.png"></ion-img>
+      <ion-title class="ion-text-center">Commande validée !</ion-title>
+    </ion-row>
+  </ion-grid>
+</ion-content>

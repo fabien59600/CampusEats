@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-title class="ion-text-center">CampusEats</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item-sliding *ngFor="let food of cart">
+      <!--<ion-item (click)="">-->
+        <ion-item>
+        <ion-thumbnail slot="start" *ngIf="food.imagePath !== null">
+          <img [src]="food.imagePath" alt="Image de couverture">
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{food.foodName}}</h2>
+          <h3>{{food.description}}</h3>
+          <h1>{{food.price}} €</h1>
+        </ion-label>
+      </ion-item>
+      <ion-item-options side="end">
+        <ion-item-option color="medium" (click)="cartService.removeToCart(food.id)"><ion-icon name="close"></ion-icon>Supprimer</ion-item-option>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
+  <ion-title class="ion-text-right" *ngIf="cartService.getTotal()>0">Total : {{cartService.getTotal()}} €</ion-title>
+  <ion-title class="ion-text-center" *ngIf="cartService.getTotal()==0">Votre panier est vide.</ion-title>
+  <br/>
+  <ion-row>
+  <ion-col></ion-col>
+    <ion-button color="medium" *ngIf="cartService.getTotal()>0" tab="cart" (click)="getSucces()">Commander</ion-button>
+  <ion-col></ion-col>
+  </ion-row>
+</ion-content>

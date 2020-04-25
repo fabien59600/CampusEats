@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-title class="ion-text-center">CampusEats</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-grid>
+    <ion-row *ngFor="let food of foodList">
+      <ion-col>
+        <ion-card>
+          <ion-card-header>
+            <ion-img type="image/png" href="/tabs/tab1" [src]="food.imagePath"></ion-img>
+            <ion-card-subtitle>{{food.companyName}}</ion-card-subtitle>
+            <ion-card-title href="/tabs/menus">{{food.foodName}}</ion-card-title>
+            <div class="ion-text-end">
+              <ion-card-title style="color:orange">{{food.price}} €</ion-card-title>
+            </div>
+          </ion-card-header>
+        
+          <ion-card-content>
+            {{food.description}}
+          </ion-card-content>
+          <ion-row>
+          <ion-col></ion-col>
+          <ion-col>
+                <ion-button (click)="addToCart(food)" color="medium">
+                  <ion-icon name="cart-outline"></ion-icon>
+                  Ajouter au panier
+                </ion-button>
+          </ion-col>
+          </ion-row>
+          <!--<ion-checkbox class=pull-right></ion-checkbox>-->
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
