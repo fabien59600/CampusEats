@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {CartManagerService} from '../cart-manager.service';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-menus',
@@ -10,6 +11,7 @@ export class MenusPage implements OnInit {
 
   constructor(
     private cartService: CartManagerService,
+    private router: Router
   ) { }
 
   foodList=[{
@@ -48,6 +50,14 @@ export class MenusPage implements OnInit {
 
   addToCart(food: any){
     this.cartService.addToCart(food);
+  }
+
+  getDetails(food: any): void {
+    this.router.navigateByUrl('food-details')
+        .then(() => {
+        })
+        .catch((e) => console.warn(e));
+    this.cartService.updateFoodDetails(food)
   }
 
   ngOnInit() {

@@ -9,6 +9,7 @@ export class CartManagerService {
 
   cartContent=[];
   total=0;
+  foodDetails={};
 
   addToCart(item:any){
     this.cartContent.push(item);
@@ -26,6 +27,10 @@ export class CartManagerService {
 
   getTotal(){
     return this.total;
+  }
+
+  updateFoodDetails(food: any){
+    this.foodDetails=food;
   }
 
 }

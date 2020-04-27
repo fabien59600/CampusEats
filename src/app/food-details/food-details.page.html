@@ -1,9 +1,34 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>foodDetails</ion-title>
+  <ion-toolbar color="medium">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Details</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+  <ion-card-header>
+    <ion-img type="image/png" [src]="cartService.foodDetails.imagePath"></ion-img>
+    <ion-card-subtitle>{{cartService.foodDetails.companyName}}</ion-card-subtitle>
+    <ion-card-title>{{cartService.foodDetails.foodName}}</ion-card-title>
+    <div class="ion-text-end">
+      <ion-card-title style="color:orange">{{cartService.foodDetails.price}} €</ion-card-title>
+    </div>
+  </ion-card-header>
+
+  <ion-card-content>
+    {{cartService.foodDetails.description}}
+  </ion-card-content>
+  <ion-row>
+  <ion-col></ion-col>
+  <ion-col>
+        <ion-button (click)="cartService.addToCart(cartService.foodDetails)" color="medium">
+          <ion-icon name="cart-outline"></ion-icon>
+          Ajouter au panier
+        </ion-button>
+  </ion-col>
+  <ion-col></ion-col>
+  </ion-row>
 </ion-content>

@@ -9,8 +9,8 @@
     <ion-row *ngFor="let food of foodList">
       <ion-col>
         <ion-card>
-          <ion-card-header>
-            <ion-img type="image/png" href="/tabs/tab1" [src]="food.imagePath"></ion-img>
+          <ion-card-header (click)="getDetails(food)">
+            <ion-img type="image/png" [src]="food.imagePath"></ion-img>
             <ion-card-subtitle>{{food.companyName}}</ion-card-subtitle>
             <ion-card-title href="/tabs/menus">{{food.foodName}}</ion-card-title>
             <div class="ion-text-end">
