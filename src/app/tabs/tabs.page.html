@@ -8,6 +8,7 @@
 
     <ion-tab-button tab="cart">
       <ion-icon name="cart-outline"></ion-icon>
+      <ion-badge *ngIf="cartService.cartContent.length !== 0" color="danger">{{cartService.cartContent.length}}</ion-badge>
       <ion-label>Panier</ion-label>
     </ion-tab-button>
     

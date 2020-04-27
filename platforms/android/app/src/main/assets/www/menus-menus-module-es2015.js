@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"medium\">\n    <ion-title class=\"ion-text-center\">CampusEats</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-grid>\n    <ion-row *ngFor=\"let food of foodList\">\n      <ion-col>\n        <ion-card>\n          <ion-card-header>\n            <ion-img type=\"image/png\" href=\"/tabs/tab1\" [src]=\"food.imagePath\"></ion-img>\n            <ion-card-subtitle>{{food.companyName}}</ion-card-subtitle>\n            <ion-card-title href=\"/tabs/menus\">{{food.foodName}}</ion-card-title>\n            <div class=\"ion-text-end\">\n              <ion-card-title style=\"color:orange\">{{food.price}} €</ion-card-title>\n            </div>\n          </ion-card-header>\n        \n          <ion-card-content>\n            {{food.description}}\n          </ion-card-content>\n          <ion-row>\n          <ion-col></ion-col>\n          <ion-col>\n                <ion-button (click)=\"addToCart(food)\" color=\"medium\">\n                  <ion-icon name=\"cart-outline\"></ion-icon>\n                  Ajouter au panier\n                </ion-button>\n          </ion-col>\n          </ion-row>\n          <!--<ion-checkbox class=pull-right></ion-checkbox>-->\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"medium\">\n    <ion-title class=\"ion-text-center\">CampusEats</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-grid>\n    <ion-row *ngFor=\"let food of foodList\">\n      <ion-col>\n        <ion-card>\n          <ion-card-header (click)=\"getDetails(food)\">\n            <ion-img type=\"image/png\" [src]=\"food.imagePath\"></ion-img>\n            <ion-card-subtitle>{{food.companyName}}</ion-card-subtitle>\n            <ion-card-title href=\"/tabs/menus\">{{food.foodName}}</ion-card-title>\n            <div class=\"ion-text-end\">\n              <ion-card-title style=\"color:orange\">{{food.price}} €</ion-card-title>\n            </div>\n          </ion-card-header>\n        \n          <ion-card-content>\n            {{food.description}}\n          </ion-card-content>\n          <ion-row>\n          <ion-col></ion-col>\n          <ion-col>\n                <ion-button (click)=\"addToCart(food)\" color=\"medium\">\n                  <ion-icon name=\"cart-outline\"></ion-icon>\n                  Ajouter au panier\n                </ion-button>\n          </ion-col>\n          </ion-row>\n          <!--<ion-checkbox class=pull-right></ion-checkbox>-->\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n");
 
 /***/ }),
 
@@ -118,12 +118,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
 /* harmony import */ var _cart_manager_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../cart-manager.service */ "./src/app/cart-manager.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 
 let MenusPage = class MenusPage {
-    constructor(cartService) {
+    constructor(cartService, router) {
         this.cartService = cartService;
+        this.router = router;
         this.foodList = [{
                 id: 1,
                 companyName: 'Burgers Factory',
@@ -161,11 +164,19 @@ let MenusPage = class MenusPage {
     addToCart(food) {
         this.cartService.addToCart(food);
     }
+    getDetails(food) {
+        this.router.navigateByUrl('food-details')
+            .then(() => {
+        })
+            .catch((e) => console.warn(e));
+        this.cartService.updateFoodDetails(food);
+    }
     ngOnInit() {
     }
 };
 MenusPage.ctorParameters = () => [
-    { type: _cart_manager_service__WEBPACK_IMPORTED_MODULE_2__["CartManagerService"] }
+    { type: _cart_manager_service__WEBPACK_IMPORTED_MODULE_2__["CartManagerService"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] }
 ];
 MenusPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -173,7 +184,8 @@ MenusPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./menus.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/menus/menus.page.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./menus.page.scss */ "./src/app/menus/menus.page.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_cart_manager_service__WEBPACK_IMPORTED_MODULE_2__["CartManagerService"]])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_cart_manager_service__WEBPACK_IMPORTED_MODULE_2__["CartManagerService"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
 ], MenusPage);
 
 

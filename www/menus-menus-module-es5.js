@@ -21,7 +21,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     /* harmony default export */
 
 
-    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"medium\">\n    <ion-title class=\"ion-text-center\">CampusEats</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-grid>\n    <ion-row *ngFor=\"let food of foodList\">\n      <ion-col>\n        <ion-card>\n          <ion-card-header>\n            <ion-img type=\"image/png\" href=\"/tabs/tab1\" [src]=\"food.imagePath\"></ion-img>\n            <ion-card-subtitle>{{food.companyName}}</ion-card-subtitle>\n            <ion-card-title href=\"/tabs/menus\">{{food.foodName}}</ion-card-title>\n            <div class=\"ion-text-end\">\n              <ion-card-title style=\"color:orange\">{{food.price}} €</ion-card-title>\n            </div>\n          </ion-card-header>\n        \n          <ion-card-content>\n            {{food.description}}\n          </ion-card-content>\n          <ion-row>\n          <ion-col></ion-col>\n          <ion-col>\n                <ion-button (click)=\"addToCart(food)\" color=\"medium\">\n                  <ion-icon name=\"cart-outline\"></ion-icon>\n                  Ajouter au panier\n                </ion-button>\n          </ion-col>\n          </ion-row>\n          <!--<ion-checkbox class=pull-right></ion-checkbox>-->\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n";
+    __webpack_exports__["default"] = "<ion-header>\n  <ion-toolbar color=\"medium\">\n    <ion-title class=\"ion-text-center\">CampusEats</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content [fullscreen]=\"true\">\n  <ion-grid>\n    <ion-row *ngFor=\"let food of foodList\">\n      <ion-col>\n        <ion-card>\n          <ion-card-header (click)=\"getDetails(food)\">\n            <ion-img type=\"image/png\" [src]=\"food.imagePath\"></ion-img>\n            <ion-card-subtitle>{{food.companyName}}</ion-card-subtitle>\n            <ion-card-title href=\"/tabs/menus\">{{food.foodName}}</ion-card-title>\n            <div class=\"ion-text-end\">\n              <ion-card-title style=\"color:orange\">{{food.price}} €</ion-card-title>\n            </div>\n          </ion-card-header>\n        \n          <ion-card-content>\n            {{food.description}}\n          </ion-card-content>\n          <ion-row>\n          <ion-col></ion-col>\n          <ion-col>\n                <ion-button (click)=\"addToCart(food)\" color=\"medium\">\n                  <ion-icon name=\"cart-outline\"></ion-icon>\n                  Ajouter au panier\n                </ion-button>\n          </ion-col>\n          </ion-row>\n          <!--<ion-checkbox class=pull-right></ion-checkbox>-->\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n";
     /***/
   },
 
@@ -215,12 +215,19 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     var _cart_manager_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(
     /*! ../cart-manager.service */
     "./src/app/cart-manager.service.ts");
+    /* harmony import */
+
+
+    var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(
+    /*! @angular/router */
+    "./node_modules/@angular/router/fesm2015/router.js");
 
     var MenusPage = /*#__PURE__*/function () {
-      function MenusPage(cartService) {
+      function MenusPage(cartService, router) {
         _classCallCheck(this, MenusPage);
 
         this.cartService = cartService;
+        this.router = router;
         this.foodList = [{
           id: 1,
           companyName: 'Burgers Factory',
@@ -258,6 +265,14 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
           this.cartService.addToCart(food);
         }
       }, {
+        key: "getDetails",
+        value: function getDetails(food) {
+          this.router.navigateByUrl('food-details').then(function () {})["catch"](function (e) {
+            return console.warn(e);
+          });
+          this.cartService.updateFoodDetails(food);
+        }
+      }, {
         key: "ngOnInit",
         value: function ngOnInit() {}
       }]);
@@ -268,6 +283,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
     MenusPage.ctorParameters = function () {
       return [{
         type: _cart_manager_service__WEBPACK_IMPORTED_MODULE_2__["CartManagerService"]
+      }, {
+        type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]
       }];
     };
 
@@ -279,7 +296,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
       styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(
       /*! ./menus.page.scss */
       "./src/app/menus/menus.page.scss"))["default"]]
-    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_cart_manager_service__WEBPACK_IMPORTED_MODULE_2__["CartManagerService"]])], MenusPage);
+    }), tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_cart_manager_service__WEBPACK_IMPORTED_MODULE_2__["CartManagerService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])], MenusPage);
     /***/
   }
 }]);

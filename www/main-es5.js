@@ -1108,6 +1108,7 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
         this.cartContent = [];
         this.total = 0;
+        this.foodDetails = {};
       }
 
       _createClass(CartManagerService, [{
@@ -1135,6 +1136,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
         key: "getTotal",
         value: function getTotal() {
           return this.total;
+        }
+      }, {
+        key: "updateFoodDetails",
+        value: function updateFoodDetails(food) {
+          this.foodDetails = food;
         }
       }]);
 

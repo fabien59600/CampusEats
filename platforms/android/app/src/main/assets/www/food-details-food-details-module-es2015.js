@@ -9,7 +9,7 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar>\n    <ion-title>foodDetails</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n</ion-content>\n");
+/* harmony default export */ __webpack_exports__["default"] = ("<ion-header>\n  <ion-toolbar color=\"medium\">\n    <ion-buttons slot=\"start\">\n      <ion-back-button></ion-back-button>\n    </ion-buttons>\n    <ion-title>Details</ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <ion-card-header>\n    <ion-img type=\"image/png\" [src]=\"cartService.foodDetails.imagePath\"></ion-img>\n    <ion-card-subtitle>{{cartService.foodDetails.companyName}}</ion-card-subtitle>\n    <ion-card-title>{{cartService.foodDetails.foodName}}</ion-card-title>\n    <div class=\"ion-text-end\">\n      <ion-card-title style=\"color:orange\">{{cartService.foodDetails.price}} €</ion-card-title>\n    </div>\n  </ion-card-header>\n\n  <ion-card-content>\n    {{cartService.foodDetails.description}}\n  </ion-card-content>\n  <ion-row>\n  <ion-col></ion-col>\n  <ion-col>\n        <ion-button (click)=\"cartService.addToCart(cartService.foodDetails)\" color=\"medium\">\n          <ion-icon name=\"cart-outline\"></ion-icon>\n          Ajouter au panier\n        </ion-button>\n  </ion-col>\n  <ion-col></ion-col>\n  </ion-row>\n</ion-content>\n");
 
 /***/ }),
 
@@ -117,20 +117,27 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FoodDetailsPage", function() { return FoodDetailsPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
+/* harmony import */ var _cart_manager_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../cart-manager.service */ "./src/app/cart-manager.service.ts");
+
 
 
 let FoodDetailsPage = class FoodDetailsPage {
-    constructor() { }
+    constructor(cartService) {
+        this.cartService = cartService;
+    }
     ngOnInit() {
     }
 };
+FoodDetailsPage.ctorParameters = () => [
+    { type: _cart_manager_service__WEBPACK_IMPORTED_MODULE_2__["CartManagerService"] }
+];
 FoodDetailsPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
         selector: 'app-food-details',
         template: tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! raw-loader!./food-details.page.html */ "./node_modules/raw-loader/dist/cjs.js!./src/app/food-details/food-details.page.html")).default,
         styles: [tslib__WEBPACK_IMPORTED_MODULE_0__["__importDefault"](__webpack_require__(/*! ./food-details.page.scss */ "./src/app/food-details/food-details.page.scss")).default]
     }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_cart_manager_service__WEBPACK_IMPORTED_MODULE_2__["CartManagerService"]])
 ], FoodDetailsPage);
 
 

@@ -874,6 +874,7 @@ let CartManagerService = class CartManagerService {
     constructor() {
         this.cartContent = [];
         this.total = 0;
+        this.foodDetails = {};
     }
     addToCart(item) {
         this.cartContent.push(item);
@@ -888,6 +889,9 @@ let CartManagerService = class CartManagerService {
     }
     getTotal() {
         return this.total;
+    }
+    updateFoodDetails(food) {
+        this.foodDetails = food;
     }
 };
 CartManagerService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
